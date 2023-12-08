@@ -1,0 +1,41 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.App{
+    border: 10px double black;
+    width: 80vmin;
+    height: 80vmin;
+}
+
+.row{
+    display: flex;
+}
+
+.row div{
+    width: 200px;
+    aspect-ratio: 1/1;
+    border: 1px solid black;
+    cursor: pointer;
+    background-color: lightgray;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    line-height: 0
+}
+
+.row .selected{
+    cursor: auto;
+    background-color: grey;
+}
