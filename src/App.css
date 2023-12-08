@@ -39,3 +39,11 @@ body{
     cursor: auto;
     background-color: grey;
 }
+
+.row :not(div.selected):hover{
+    box-shadow: inset 0 0 4px black;
+}
+
+.row :not(div.selected):active{
+    box-shadow: inset 0 0 7px black;
+}

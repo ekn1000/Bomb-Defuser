@@ -36,7 +36,7 @@ const Item = memo(({x, y, data, setData, gameOver, setGameOver}) => {
     }
 
     function checkTerritory(x, y) {
-        if(data[y][x].value === '') {
+        if (data[y][x].value === '') {
             if (nearBombCount(x, y) === 0) {
                 data[y][x].value = ' '
                 if (data[y - 1]?.[x]) {
@@ -65,38 +65,35 @@ const Item = memo(({x, y, data, setData, gameOver, setGameOver}) => {
     return (
         <div
             className={item.value && item.value !== '^' ? "selected" : undefined}
-            onContextMenu={(e) => {
+            onContextMenu={(e)=>e.preventDefault()}
+            onMouseDown={(e) => {
                 e.preventDefault()
 
-                if (!item.value) {
-                    item.value = "^"
-                } else if (item.value === "^") {
-                    item.value = ""
-                }
-                console.log(item)
-                setData([...data])
-            }}
-            onClick={() => {
-                if (item.value === "") {
-
-
-                    if (item.isBomb) {
-                        setGameOver(true)
-                    } else {
-                        checkTerritory(x, y)
-                        setData([...data])
-
+                // left click
+                if (e.button === 0) {
+                    if (item.value === "") {
+                        if (item.isBomb) {
+                            setGameOver(true)
+                        } else {
+                            checkTerritory(x, y)
+                            setData([...data])
+                        }
                     }
-                    // if (data[y][x]) {
-                    //     paint(data, x, y)
-                    //
-                    //     setData([...data])
-                    // }
-
-
+                }
+                // middle click
+                else if (e.button === 1) {
+                    console.log('test')
+                }
+                // right click
+                else if (e.button === 2) {
+                    if (!item.value) {
+                        item.value = "^"
+                    } else if (item.value === "^") {
+                        item.value = ""
+                    }
+                    setData([...data])
                 }
             }}
-
         >
             {(gameOver && item.isBomb ? "X" : item.value)}
             {/*{(item.isBomb ? "X" : item.value)}*/}

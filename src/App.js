@@ -37,7 +37,7 @@ function App() {
         alert("game over")
     }
 
-    console.log(data)
+    // console.log(data)
     return (
         <div className="App">
             {
