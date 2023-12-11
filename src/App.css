@@ -15,7 +15,7 @@ body{
 .App{
     border: 10px double black;
     width: 80vmin;
-    height: 80vmin;
+    min-height: 80vmin;
 }
 
 .row{

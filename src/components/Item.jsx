@@ -65,7 +65,7 @@ const Item = memo(({x, y, data, setData, gameOver, setGameOver}) => {
     return (
         <div
             className={item.value && item.value !== '^' ? "selected" : undefined}
-            onContextMenu={(e)=>e.preventDefault()}
+            onContextMenu={(e) => e.preventDefault()}
             onMouseDown={(e) => {
                 e.preventDefault()
 
