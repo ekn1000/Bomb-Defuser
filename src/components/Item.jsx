@@ -64,7 +64,7 @@ const Item = memo(({x, y, data, setData, gameOver, setGameOver}) => {
 
     return (
         <div
-            className={item.value !== null && item.value !== -1 ? "selected" : undefined}
+            className={item.value !== null && item.value !== -1 ? "selected" : gameOver && item.isBomb ? "error" : undefined}
             onContextMenu={(e) => e.preventDefault()}
             onMouseDown={(e) => {
                 e.preventDefault()
@@ -95,7 +95,7 @@ const Item = memo(({x, y, data, setData, gameOver, setGameOver}) => {
                 }
             }}
         >
-            {gameOver && item.isBomb && "X"}
+            {/*{gameOver && item.isBomb && "X"}*/}
             {item.value > 0 && item.value}
             {item.value === -1 && <strong style={{color: "red"}}>!</strong> }
         </div>
