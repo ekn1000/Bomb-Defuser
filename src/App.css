@@ -40,10 +40,25 @@ body{
     background-color: grey;
 }
 
-.row :not(div.selected):hover{
+.row :not(div.selected, h3):hover{
     box-shadow: inset 0 0 4px black;
 }
 
-.row :not(div.selected):active{
+.row :not(div.selected, h3):active{
     box-shadow: inset 0 0 7px black;
+}
+
+.row:has(.bombCount){
+    margin: 10px;
+}
+.row .bombCount{
+    color: red;
+    background-color: lightgray;
+    margin-left: auto;
+    padding: 0 10px;
+    border: 1px solid black;
+}
+
+.row button{
+    padding: 0 10px;
 }

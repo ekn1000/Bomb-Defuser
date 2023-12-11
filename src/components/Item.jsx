@@ -36,9 +36,9 @@ const Item = memo(({x, y, data, setData, gameOver, setGameOver}) => {
     }
 
     function checkTerritory(x, y) {
-        if (data[y][x].value === '') {
+        if (data[y][x].value === null) {
             if (nearBombCount(x, y) === 0) {
-                data[y][x].value = ' '
+                data[y][x].value = 0
                 if (data[y - 1]?.[x]) {
                     checkTerritory(x, y - 1)
                 }
@@ -64,14 +64,14 @@ const Item = memo(({x, y, data, setData, gameOver, setGameOver}) => {
 
     return (
         <div
-            className={item.value && item.value !== '^' ? "selected" : undefined}
+            className={item.value !== null && item.value !== -1 ? "selected" : undefined}
             onContextMenu={(e) => e.preventDefault()}
             onMouseDown={(e) => {
                 e.preventDefault()
 
                 // left click
                 if (e.button === 0) {
-                    if (item.value === "") {
+                    if (item.value === null) {
                         if (item.isBomb) {
                             setGameOver(true)
                         } else {
@@ -86,17 +86,18 @@ const Item = memo(({x, y, data, setData, gameOver, setGameOver}) => {
                 }
                 // right click
                 else if (e.button === 2) {
-                    if (!item.value) {
-                        item.value = "^"
-                    } else if (item.value === "^") {
-                        item.value = ""
+                    if (item.value === null) {
+                        item.value = -1
+                    } else if (item.value === -1) {
+                        item.value = null
                     }
                     setData([...data])
                 }
             }}
         >
-            {(gameOver && item.isBomb ? "X" : item.value)}
-            {/*{(item.isBomb ? "X" : item.value)}*/}
+            {gameOver && item.isBomb && "X"}
+            {item.value > 0 && item.value}
+            {item.value === -1 && <strong style={{color: "red"}}>!</strong> }
         </div>
     );
 });
